@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<head>
+        <title>Syncfusion JavaScript (ES5) UI Control</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+<link id="sample-themes" href="../dist/fluent.css" rel="stylesheet" type="text/css"/>
+        <script src="https://cdn.syncfusion.com/ej2/ej2-base/dist/global/ej2-base.min.js" type="text/javascript"></script>
+        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js" type="text/javascript"></script>
+    
+
+<body>
+    <h2>Syncfusion JavaScript (ES5) List View Control</h2>
+    <div class="col-lg-12 control-section">
+        <h3>Default Functionalities</h3>
+        <div id="flat-list">
+            <h4>Flat List</h4>
+            <!-- ListView element -->
+            <div id="listview-def" tabindex="1">
+                <ul>
+                    <li>Hennessey Venom</li>
+                    <li>Bugatti Chiron</li>
+                    <li>Bugatti Veyron Super Sport</li>
+                    <li>SSC Ultimate Aero</li>
+                    <li>Koenigsegg CCR</li>
+                    <li>McLaren F1</li>
+                    <li>Aston Martin One-77</li>
+                    <li>Jaguar XJ220</li>
+                    <li>McLaren P1</li>
+                    <li>Ferrari LaFerrari</li>
+                    <li>Zenvo ST1</li>
+                    <li>Lamborghini Veneno</li>
+                </ul>
+            </div>
+        </div>
+        <div id="group-list">
+            <h4>Group List</h4>
+            <!-- Group ListView element -->
+            <div id="listview-grp" tabindex="1">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>Checklist</h3>
+        <div id="flat-list">
+            <h4>Flat List</h4>
+            <!-- ListView element -->
+            <div id="listview-def-check" tabindex="1">
+            </div>
+        </div>
+        <div id="group-list">
+            <h4>Group List</h4>
+            <!-- Group ListView element -->
+            <div id="listview-grp-check" tabindex="1">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>Nested List</h3>
+        <!-- ListView element -->
+        <div id="listview" tabindex="1"></div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>Template with Avatar</h3>
+        <!-- ListView element -->
+        <div id="List4" tabindex="1"></div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>Template with Badge</h3>
+        <!-- ListView element -->
+        <div id="List3" tabindex="1"></div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>Template with Badge and Avatar</h3>
+        <!-- ListView element -->
+        <div id="List5" tabindex="1"></div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>MultiLine Template</h3>
+        <!-- ListView element -->
+        <div id="List" tabindex="1"></div>
+    </div>
+    <div class="col-lg-12 control-section">
+        <h3>Group Template</h3>
+        <!-- ListView element -->
+        <div id="List1" tabindex="1"></div>
+    </div>
+    <script src="https://ej2.syncfusion.com/javascript/demos/listview/default/datasource.js"
+        type="text/javascript"></script>
+    <script>
+        //Initialize ListView component
+        var listObj = new ej.lists.ListView();
+
+        //Render initialized ListView component
+        listObj.appendTo('#listview-def');
+
+        //Initialize ListView component
+        var grpListObj = new ej.lists.ListView({
+
+            //Set defined data to dataSource property
+            dataSource: window.listData,
+
+            //Map the appropriate columns to fields property
+            fields: { groupBy: 'category' }
+
+        });
+
+        //Render initialized ListView component
+        grpListObj.appendTo('#listview-grp');
+
+        //checklist
+
+        //Initialize ListView component
+        var listObj1 = new ej.lists.ListView({
+            dataSource: window.CheckListData,
+
+            showCheckBox: true
+        });
+
+        //Render initialized ListView component
+        listObj1.appendTo('#listview-def-check');
+
+        //Initialize ListView component
+        var grpListObj1 = new ej.lists.ListView({
+
+            //Set defined data to dataSource property
+            dataSource: window.listData,
+
+            //Map the appropriate columns to fields property
+            fields: { groupBy: 'category' },
+            showCheckBox: true
+
+        });
+
+        //Render initialized ListView component
+        grpListObj1.appendTo('#listview-grp-check');
+
+        var nestedListObj = new ej.lists.ListView({
+
+            //Set defined data to dataSource property
+            dataSource: window.listViewData,
+
+            //Map appropriate columns to fields property
+            fields: { iconCss: 'icon', tooltip: 'text' },
+
+            //Set true to show icons
+            showIcon: true,
+
+            //Set header title
+            headerTitle: 'Folders',
+
+            //Set true to show header title
+            showHeader: true
+
+        });
+
+        //Render initialized ListView component
+        nestedListObj.appendTo('#listview');
+
+        // ListTemplate
+
+
+        var template = '<div class="e-list-wrapper e-list-multi-line e-list-avatar">' +
+            '${if(avatar!=="")}' +
+            '<span class="e-avatar e-avatar-circle">${avatar}</span>' +
+            '${else}' +
+            '<span class="${pic} e-avatar e-avatar-circle"> </span>' +
+            '${/if}' +
+            '<span class="e-list-item-header">${text}</span>' +
+            '<span class="e-list-content">${contact}</span>' +
+            '</div>';
+
+        //Define an array of JSON data
+        var dataSource = [
+            {
+                text: "Jenifer",
+                contact: "(206) 555-985774",
+                id: "1",
+                avatar: "",
+                pic: "pic01"
+            },
+            { text: "Amenda", contact: "(206) 555-3412", id: "2", avatar: "A", pic: "" },
+            {
+                text: "Isabella",
+                contact: "(206) 555-8122",
+                id: "4",
+                avatar: "",
+                pic: "pic02"
+            },
+            {
+                text: "William ",
+                contact: "(206) 555-9482",
+                id: "5",
+                avatar: "W",
+                pic: ""
+            },
+            {
+                text: "Jacob",
+                contact: "(71) 555-4848",
+                id: "6",
+                avatar: "",
+                pic: "pic04"
+            },
+            { text: "Matthew", contact: "(71) 555-7773", id: "7", avatar: "M", pic: "" },
+            {
+                text: "Oliver",
+                contact: "(71) 555-5598",
+                id: "8",
+                avatar: "",
+                pic: "pic03"
+            },
+            {
+                text: "Charlotte",
+                contact: "(206) 555-1189",
+                id: "9",
+                avatar: "C",
+                pic: ""
+            }
+        ];
+        // Initialize ListView component
+        var listObj = new ej.lists.ListView({
+            //Set defined data to dataSource property
+            dataSource: dataSource,
+            //Map the appropriate columns to fields property
+            fields: { text: "text" },
+            cssClass: 'e-list-template',
+            //set width of ListView
+            width: "350px",
+            //enable ListView header
+            showHeader: true,
+            //set header title
+            headerTitle: "Contacts",
+            //Set customized template
+            template: template,
+            sortOrder: "Ascending"
+        });
+        //Render initialized ListView component
+        listObj.appendTo("#List");
+
+        // group template
+
+        var template1 = '<div class="e-list-wrapper e-list-multi-line e-list-avatar">' +
+            '<img class="e-avatar e-avatar-circle" src=${image} style="background:#BCBCBC" />' +
+            '<span class="e-list-item-header">${Name}</span>' +
+            '<span class="e-list-content">${contact}</span>' +
+            '</div>';
+
+        var dataSource1 = [
+            { Name: 'Nancy', contact: '(206) 555-985774', id: '1', image: 'https://ej2.syncfusion.com/demos/src/grid/images/1.png', category: 'Experience' },
+            { Name: 'Janet', contact: '(206) 555-3412', id: '2', image: 'https://ej2.syncfusion.com/demos/src/grid/images/3.png', category: 'Fresher' },
+            { Name: 'Margaret', contact: '(206) 555-8122', id: '4', image: 'https://ej2.syncfusion.com/demos/src/grid/images/4.png', category: 'Experience' },
+            { Name: 'Andrew ', contact: '(206) 555-9482', id: '5', image: 'https://ej2.syncfusion.com/demos/src/grid/images/2.png', category: 'Experience' },
+            { Name: 'Steven', contact: '(71) 555-4848', id: '6', image: 'https://ej2.syncfusion.com/demos/src/grid/images/5.png', category: 'Fresher' },
+            { Name: 'Michael', contact: '(71) 555-7773', id: '7', image: 'https://ej2.syncfusion.com/demos/src/grid/images/6.png', category: 'Experience' },
+            { Name: 'Robert', contact: '(71) 555-5598', id: '8', image: 'https://ej2.syncfusion.com/demos/src/grid/images/7.png', category: 'Fresher' },
+            { Name: 'Laura', contact: '(206) 555-1189', id: '9', image: 'https://ej2.syncfusion.com/demos/src/grid/images/8.png', category: 'Experience' },
+        ];
+
+        // Initialize ListView component
+        var listObj = new ej.lists.ListView({
+
+            //Set defined data to dataSource property
+            dataSource: dataSource1,
+
+            width: 350,
+
+            //Map the appropriate columns to fields property
+            fields: { text: 'Name', groupBy: 'category' },
+            cssClass: 'e-list-template',
+            //Set customized template
+            template: template1,
+            groupTemplate: '<div><span class="category">${items[0].category}</span> <span class="count"> ${items.length} Item(s)</span></div> '
+
+        });
+        listObj.appendTo('#List1');
+
+        var dataSource_1 = {};
+
+        [[1010, 'data1'], [5010, 'data5'], [10010, 'data10'], [25010, 'data25']].forEach((ds) => {
+            let data = commonData.slice();
+            let index;
+            let spyIndex;
+            for (var i = 10; i <= ds[0]; i++) {
+                while (index === spyIndex) {
+                    index = parseInt((Math.random() * 10).toString(), 10);
+                }
+                data.push({ name: data[index].name, icon: data[index].icon, imgUrl: data[index].imgUrl, id: i.toString() });
+                spyIndex = index;
+            }
+            dataSource_1[ds[1]] = data;
+        });
+
+        var template = '<div class="e-list-wrapper e-list-avatar">' +
+            '<span class="e-avatar e-avatar-circle ${icon} ${$imgUrl ? \'hideUI\' : \'showUI\' }">' +
+            '${icon}</span> <img class="e-avatar e-avatar-circle ${$imgUrl ? \'showUI\' : \'hideUI\' }" ' +
+            'src="${$imgUrl ?  $imgUrl : \' \' }" />' +
+            '<span class="e-list-content">${name}</span></div>';
+
+        var template_badge = '<div class="e-list-wrapper e-list-badge">' +
+            '<span class="e-list-content">${name}</span>' + '<span class="e-badge e-badge-primary">${id}</span></div>';
+        var templateavatarbadge = '<div class="e-list-wrapper e-list-avatar  e-list-badge">' +
+            '<span class="e-avatar e-avatar-circle ${icon} ${$imgUrl ? \'hideUI\' : \'showUI\' }">' +
+            '${icon}</span> <img class="e-avatar e-avatar-circle ${$imgUrl ? \'showUI\' : \'hideUI\' }" ' +
+            'src="${$imgUrl ?  $imgUrl : \' \' }" />' +
+            '<span class="e-list-content">${name}</span>' + '<span class="e-badge e-badge-primary">${id}</span></div>';
+
+        var listObj_1 = new ej.lists.ListView({
+
+            //Set defined data to dataSource property.
+            dataSource: dataSource_1.data1,
+
+            //enable UI virtualization
+            enableVirtualization: true,
+
+            //Set built-in cssClass for templates
+            cssClass: 'e-list-template',
+
+            //Set height
+            height: 500,
+
+            //Set header title
+            headerTitle: 'Contacts',
+
+            //Set true to show header title
+            showHeader: true,
+            width: "350px",
+            //Set defined customized template
+            template: template,
+
+        });
+
+        //Render initialized ListView component
+        listObj_1.appendTo('#List4');
+
+        var listObj_2 = new ej.lists.ListView({
+
+            //Set defined data to dataSource property.
+            dataSource: dataSource_1.data1,
+
+            //enable UI virtualization
+            enableVirtualization: true,
+
+            //Set built-in cssClass for templates
+            cssClass: 'e-list-template',
+
+            //Set height
+            height: 500,
+
+            //Set header title
+            headerTitle: 'Contacts',
+
+            //Set true to show header title
+            showHeader: true,
+            width: "350px",
+
+            //Set defined customized template
+            template: template_badge,
+
+        });
+
+        //Render initialized ListView component
+        listObj_2.appendTo('#List3');
+
+        var listObj_3 = new ej.lists.ListView({
+
+            //Set defined data to dataSource property.
+            dataSource: dataSource_1.data1,
+
+            //enable UI virtualization
+            enableVirtualization: true,
+
+            //Set built-in cssClass for templates
+            cssClass: 'e-list-template',
+
+            //Set height
+            height: 500,
+
+            //Set header title
+            headerTitle: 'Contacts',
+            width: "350px",
+
+            //Set true to show header title
+            showHeader: true,
+
+            //Set defined customized template
+            template: templateavatarbadge,
+
+        });
+
+        //Render initialized ListView component
+        listObj_3.appendTo('#List5');
+    </script>
+
+    <style>
+        body {
+            touch-action: none;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+
+
+        .control-section {
+            overflow: auto;
+        }
+
+        #List4,
+        #List3,
+        #List5,
+        #flat-list,
+        #group-list {
+            width: 49%;
+            margin: auto;
+            margin-bottom: 15px;
+        }
+
+        #flat-list h4,
+        #group-list h4 {
+            padding-left: 16px;
+        }
+
+        #flat-list {
+            float: left;
+        }
+
+        #group-list {
+            float: right;
+        }
+
+        @media screen and (max-width: 590px) {
+
+            #flat-list,
+            #group-list {
+                width: 100%;
+            }
+        }
+
+        #listview.e-listview .e-list-icon {
+            height: 24px;
+            width: 30px;
+        }
+
+        .folder {
+            background-repeat: no-repeat;
+            background-image: url('https://ej2.syncfusion.com/javascript/demos/src/listview/images/file_icons.png');
+            background-position: -5px -466px;
+            background-size: 302%;
+        }
+
+        .file {
+            background-repeat: no-repeat;
+            background-image: url('https://ej2.syncfusion.com/javascript/demos/src/listview/images/file_icons.png');
+            background-position: -5px -151px;
+            background-size: 302%;
+        }
+
+        #List4,
+        #List3,
+        #List5,
+        #listview,
+        #List,
+        #List1 {
+            max-width: 500px;
+            margin: auto;
+
+        }
+
+        .hideUI {
+            display: none;
+        }
+
+        .pic01 {
+            background-image: url("https://ej2.syncfusion.com/demos/src/grid/images/1.png");
+        }
+
+        .pic02 {
+            background-image: url("https://ej2.syncfusion.com/demos/src/grid/images/3.png");
+        }
+
+        .pic03 {
+            background-image: url("https://ej2.syncfusion.com/demos/src/grid/images/5.png");
+        }
+
+        .pic04 {
+            background-image: url("https://ej2.syncfusion.com/demos/src/grid/images/2.png");
+        }
+    </style>
+</body>
+
+</html>
